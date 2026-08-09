@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img">
+  <defs>
+    <linearGradient id="bg-i2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#476fb8"/>
+      <stop offset="55%" stop-color="#254683"/>
+      <stop offset="100%" stop-color="#0d1b36"/>
+    </linearGradient>
+    <radialGradient id="glow-i2" cx="0.25" cy="0.2" r="0.75">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-i2" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0 H0 V60" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1.5"/>
+    </pattern>
+    <filter id="soft-i2" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg-i2)"/>
+  <rect width="1200" height="900" fill="url(#grid-i2)"/>
+  <circle cx="180" cy="140" r="240" fill="#ffffff" fill-opacity="0.14" filter="url(#soft-i2)"/>
+  <circle cx="1060" cy="800" r="220" fill="#ffffff" fill-opacity="0.1" filter="url(#soft-i2)"/>
+  <g><rect x="120" y="300" width="180" height="300" rx="28" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.45)" stroke-width="3"/><rect x="150" y="340" width="120" height="18" rx="9" fill="rgba(255,255,255,0.6)"/><rect x="150" y="394" width="120" height="18" rx="9" fill="rgba(255,255,255,0.6)"/><rect x="150" y="448" width="120" height="18" rx="9" fill="rgba(255,255,255,0.6)"/><rect x="150" y="502" width="120" height="18" rx="9" fill="rgba(255,255,255,0.6)"/><rect x="150" y="556" width="120" height="18" rx="9" fill="rgba(255,255,255,0.6)"/><path d="M320 250 C520 160, 700 340, 1080 205" fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="6" stroke-linecap="round" stroke-dasharray="0"/><circle cx="1080" cy="205" r="9" fill="rgba(255,255,255,0.7)"/><path d="M320 330 C520 252, 700 408, 1080 291" fill="none" stroke="rgba(255,255,255,0.37)" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="22 18"/><circle cx="1080" cy="291" r="8" fill="rgba(255,255,255,0.7)"/><path d="M320 410 C520 344, 700 476, 1080 377" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="5" stroke-linecap="round" stroke-dasharray="0"/><circle cx="1080" cy="377" r="7" fill="rgba(255,255,255,0.7)"/><path d="M320 490 C520 436, 700 544, 1080 463" fill="none" stroke="rgba(255,255,255,0.27)" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="22 18"/><circle cx="1080" cy="463" r="6" fill="rgba(255,255,255,0.7)"/><path d="M320 570 C520 528, 700 612, 1080 549" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0"/><circle cx="1080" cy="549" r="5" fill="rgba(255,255,255,0.7)"/><path d="M320 650 C520 620, 700 680, 1080 635" fill="none" stroke="rgba(255,255,255,0.17)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="22 18"/><circle cx="1080" cy="635" r="4" fill="rgba(255,255,255,0.7)"/></g>
+  <rect width="1200" height="900" fill="url(#glow-i2)"/>
+</svg>

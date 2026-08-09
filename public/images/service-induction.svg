@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img">
+  <defs>
+    <linearGradient id="bg-i6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c5b76"/>
+      <stop offset="55%" stop-color="#202a3c"/>
+      <stop offset="100%" stop-color="#101723"/>
+    </linearGradient>
+    <radialGradient id="glow-i6" cx="0.25" cy="0.2" r="0.75">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-i6" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0 H0 V60" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1.5"/>
+    </pattern>
+    <filter id="soft-i6" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg-i6)"/>
+  <rect width="1200" height="900" fill="url(#grid-i6)"/>
+  <circle cx="180" cy="140" r="240" fill="#ffffff" fill-opacity="0.14" filter="url(#soft-i6)"/>
+  <circle cx="1060" cy="800" r="220" fill="#ffffff" fill-opacity="0.1" filter="url(#soft-i6)"/>
+  <g><rect x="200" y="230" width="800" height="440" rx="46" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="3"/><circle cx="420" cy="380" r="120" fill="none" stroke="rgba(255,255,255,0.62)" stroke-width="5" stroke-dasharray="0"/><circle cx="420" cy="380" r="94" fill="none" stroke="rgba(255,255,255,0.48)" stroke-width="5" stroke-dasharray="0"/><circle cx="420" cy="380" r="68" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="5" stroke-dasharray="0"/><circle cx="420" cy="380" r="14" fill="rgba(255,255,255,0.85)"/><circle cx="780" cy="380" r="96" fill="none" stroke="rgba(255,255,255,0.62)" stroke-width="5" stroke-dasharray="18 14"/><circle cx="780" cy="380" r="70" fill="none" stroke="rgba(255,255,255,0.48)" stroke-width="5" stroke-dasharray="18 14"/><circle cx="780" cy="380" r="44" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="5" stroke-dasharray="18 14"/><circle cx="780" cy="380" r="14" fill="rgba(255,255,255,0.85)"/><circle cx="420" cy="545" r="96" fill="none" stroke="rgba(255,255,255,0.62)" stroke-width="5" stroke-dasharray="0"/><circle cx="420" cy="545" r="70" fill="none" stroke="rgba(255,255,255,0.48)" stroke-width="5" stroke-dasharray="0"/><circle cx="420" cy="545" r="44" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="5" stroke-dasharray="0"/><circle cx="420" cy="545" r="14" fill="rgba(255,255,255,0.85)"/><circle cx="780" cy="545" r="120" fill="none" stroke="rgba(255,255,255,0.62)" stroke-width="5" stroke-dasharray="18 14"/><circle cx="780" cy="545" r="94" fill="none" stroke="rgba(255,255,255,0.48)" stroke-width="5" stroke-dasharray="18 14"/><circle cx="780" cy="545" r="68" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="5" stroke-dasharray="18 14"/><circle cx="780" cy="545" r="14" fill="rgba(255,255,255,0.85)"/><rect x="300" y="700" width="600" height="18" rx="9" fill="rgba(255,255,255,0.25)"/><circle cx="720" cy="709" r="26" fill="rgba(255,255,255,0.9)"/></g>
+  <rect width="1200" height="900" fill="url(#glow-i6)"/>
+</svg>
