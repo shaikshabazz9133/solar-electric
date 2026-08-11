@@ -262,16 +262,17 @@ export function Hero() {
       </div>
 
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        {/* Legibility scrims. Narrow screens get a mostly even wash because the
-            copy runs full width there; from `lg` the copy is left-half only, so
-            the darkening can be biased left and leave the photograph clean. */}
-        <div className="absolute inset-0 bg-brand-950/52 lg:hidden" />
-        <div className="absolute inset-0 bg-linear-to-b from-brand-950/78 via-brand-950/12 via-55% to-brand-950/62 lg:hidden" />
-        <div className="absolute inset-0 hidden bg-linear-to-r from-brand-950 via-brand-950/74 via-40% to-transparent to-72% lg:block" />
-        <div className="absolute inset-0 bg-linear-to-t from-brand-950/80 via-transparent via-42% to-brand-950/35" />
-        {/* Keeps the photography inside the brand rather than beside it */}
-        <div className="absolute inset-0 bg-brand-900/12 mix-blend-multiply" />
-        <div className="bg-grid-drift absolute inset-0 opacity-30" />
+        {/* Legibility scrims. Neutral black rather than brand-tinted: a blue
+            wash over a photograph reads as a colour cast on the subject, not as
+            shading. Black only darkens, so the image keeps its own colour.
+            Narrow screens get a mostly even wash because the copy runs full
+            width there; from `lg` the copy is left-half only, so the darkening
+            is biased hard left and clears the photograph well before centre. */}
+        <div className="absolute inset-0 bg-black/40 lg:hidden" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/10 via-55% to-black/55 lg:hidden" />
+        <div className="absolute inset-0 hidden bg-linear-to-r from-black/82 via-black/38 via-32% to-transparent to-58% lg:block" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent via-42% to-black/25" />
+        <div className="bg-grid-drift absolute inset-0 opacity-20" />
       </div>
 
       <Container>
@@ -457,7 +458,7 @@ export function Hero() {
                     <span
                       aria-hidden
                       className={cn(
-                        "absolute inset-0 bg-brand-950/55 transition-opacity duration-500",
+                        "absolute inset-0 bg-black/40 transition-opacity duration-500",
                         isActive && "opacity-0",
                       )}
                     />

@@ -78,9 +78,9 @@ export default async function ProductsPage({ searchParams }: Props) {
                       />
                       <div
                         aria-hidden
-                        className="absolute inset-0 bg-linear-to-t from-brand-950/70 via-brand-950/10 to-transparent"
+                        className="absolute inset-0 bg-linear-to-t from-black/55 via-transparent to-transparent"
                       />
-                      <span className="absolute left-5 top-5 grid size-11 place-items-center rounded-2xl bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-sm transition-colors duration-500 group-hover:bg-brand-600 group-hover:ring-brand-500">
+                      <span className="absolute left-5 top-5 grid size-11 place-items-center rounded-2xl bg-black/45 text-white ring-1 ring-white/25 backdrop-blur-sm transition-colors duration-500 group-hover:bg-flag-700 group-hover:ring-flag-600">
                         <Icon name={item.icon} aria-hidden className="size-5" />
                       </span>
                     </div>

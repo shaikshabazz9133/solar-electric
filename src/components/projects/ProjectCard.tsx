@@ -41,15 +41,18 @@ export function ProjectCard({
           }
           className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
         />
+        {/* Only enough of a fade to hand the photograph off to the card body
+            below it — no wash over the picture itself. Neutral black, so the
+            photo keeps its own colour rather than picking up the brand blue. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-linear-to-t from-brand-950 via-brand-950/35 to-transparent"
+          className="absolute inset-0 bg-linear-to-t from-brand-950 from-2% via-black/18 via-22% to-transparent to-45%"
         />
 
-        <span className="absolute left-5 top-5 rounded-full bg-white/12 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-white ring-1 ring-white/25 backdrop-blur-sm">
+        <span className="absolute left-5 top-5 rounded-full bg-black/45 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-white ring-1 ring-white/25 backdrop-blur-sm">
           {project.sector}
         </span>
-        <span className="absolute right-5 top-5 rounded-full bg-brand-950/60 px-3 py-1.5 text-[0.6875rem] font-bold text-brand-100 ring-1 ring-white/15 backdrop-blur-sm">
+        <span className="absolute right-5 top-5 rounded-full bg-black/45 px-3 py-1.5 text-[0.6875rem] font-bold text-white ring-1 ring-white/20 backdrop-blur-sm">
           {project.year}
         </span>
       </div>

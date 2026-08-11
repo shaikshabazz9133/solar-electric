@@ -59,7 +59,7 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={state === "loading" || state === "done"}
-          className="sheen-hover relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-6 text-[0.9375rem] font-semibold text-brand-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-50 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-70"
+          className="sheen-hover relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-6 text-[0.9375rem] font-semibold text-flag-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-flag-50 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-70"
         >
           {/* Each label swaps with a small vertical roll, so the state change
               is legible even out of the corner of your eye. */}
