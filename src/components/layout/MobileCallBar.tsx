@@ -38,14 +38,14 @@ export function MobileCallBar() {
           <div className="glass mx-3 mb-3 grid grid-cols-2 gap-2 rounded-2xl p-2 shadow-float">
             <a
               href={siteConfig.phoneHref}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white text-[0.9375rem] font-semibold text-brand-900 ring-1 ring-ink-200 transition-colors active:bg-brand-50"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white text-[0.9375rem] font-semibold text-flag-700 ring-1 ring-ink-200 transition-colors active:bg-flag-50"
             >
               <Phone aria-hidden className="size-4" />
               Call now
             </a>
             <Link
               href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand-600 text-[0.9375rem] font-semibold text-white transition-colors active:bg-brand-700"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-flag-700 text-[0.9375rem] font-semibold text-white transition-colors active:bg-flag-800"
             >
               <CalendarCheck aria-hidden className="size-4" />
               Free quote

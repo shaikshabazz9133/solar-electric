@@ -98,9 +98,9 @@ export default async function ServiceDetailPage({ params }: Params) {
               <div className="relative overflow-hidden rounded-4xl">
                 <Image
                   src={service.image}
-                  alt={`Illustration representing ${service.title.toLowerCase()}`}
+                  alt={`Eagle ${service.title.toLowerCase()} work on a customer site`}
                   width={1200}
-                  height={900}
+                  height={800}
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="h-full w-full object-cover"

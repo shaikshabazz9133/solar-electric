@@ -16,7 +16,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "NorthStar Electric & Solar has been wiring and powering Central Texas since 2008. Master electricians, NABCEP-certified installers, 46 staff and a 25-year workmanship warranty.",
+    "Eagle Electric & Solar has been wiring and powering Central Texas since 2008. Master electricians, NABCEP-certified installers, 46 staff and a 25-year workmanship warranty.",
   alternates: { canonical: "/about" },
 };
 

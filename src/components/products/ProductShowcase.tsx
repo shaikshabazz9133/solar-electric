@@ -211,7 +211,7 @@ export function ProductShowcase() {
                 </div>
                 <Link
                   href={`/products?category=${category.slug}`}
-                  className="group/cta inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-600 px-5 py-3 text-[0.9375rem] font-semibold text-white transition-all duration-300 hover:bg-brand-700"
+                  className="group/cta inline-flex shrink-0 items-center gap-2 rounded-full bg-flag-700 px-5 py-3 text-[0.9375rem] font-semibold text-white transition-all duration-300 hover:bg-flag-800"
                 >
                   Explore {items.length} {items.length === 1 ? "product" : "products"}
                   <ArrowRight

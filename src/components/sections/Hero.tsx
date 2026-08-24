@@ -17,12 +17,17 @@ import {
 } from "@/lib/hooks";
 import {
   ArrowRight,
-  CheckCircle2,
+  Award,
+  BadgeCheck,
   ChevronDown,
+  FileText,
   MapPin,
   Pause,
   Phone,
   Play,
+  ShieldCheck,
+  Snowflake,
+  SunMedium,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
@@ -32,10 +37,15 @@ import { heroSlides, type HeroSlide } from "@/lib/data/heroSlides";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+// Six credentials on a 3-up grid. A grid rather than `flex-wrap` so the two
+// rows stay aligned when a longer label (the ARC one) runs to a second line.
 const proofPoints = [
-  "Licensed, bonded & $5M insured",
-  "Fixed-price quotes — no change-order games",
-  "25-year workmanship warranty",
+  { label: "ACT Licensed Electrician", icon: ShieldCheck },
+  { label: "CEC Accredited Solar Installer", icon: SunMedium },
+  { label: "Licensed, bonded & $10M insured", icon: BadgeCheck },
+  { label: "Australian Refrigeration Council (ARC)", icon: Snowflake },
+  { label: "Fixed-price quotes — no change", icon: FileText },
+  { label: "10-year workmanship warranty", icon: Award },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -237,7 +247,7 @@ export function Hero() {
     <section
       className="relative isolate flex min-h-160 flex-col justify-center overflow-hidden bg-brand-950 pb-16 pt-28 sm:pb-20 sm:pt-36 lg:min-h-192 lg:pb-20 lg:pt-44"
       aria-roledescription="carousel"
-      aria-label="Recent NorthStar jobs"
+      aria-label="Recent Eagle jobs"
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onPointerCancel={() => (swipe.current = null)}
@@ -262,16 +272,17 @@ export function Hero() {
       </div>
 
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        {/* Legibility scrims. Narrow screens get a mostly even wash because the
-            copy runs full width there; from `lg` the copy is left-half only, so
-            the darkening can be biased left and leave the photograph clean. */}
-        <div className="absolute inset-0 bg-brand-950/52 lg:hidden" />
-        <div className="absolute inset-0 bg-linear-to-b from-brand-950/78 via-brand-950/12 via-55% to-brand-950/62 lg:hidden" />
-        <div className="absolute inset-0 hidden bg-linear-to-r from-brand-950 via-brand-950/74 via-40% to-transparent to-72% lg:block" />
-        <div className="absolute inset-0 bg-linear-to-t from-brand-950/80 via-transparent via-42% to-brand-950/35" />
-        {/* Keeps the photography inside the brand rather than beside it */}
-        <div className="absolute inset-0 bg-brand-900/12 mix-blend-multiply" />
-        <div className="bg-grid-drift absolute inset-0 opacity-30" />
+        {/* Legibility scrims. Neutral black rather than brand-tinted: a blue
+            wash over a photograph reads as a colour cast on the subject, not as
+            shading. Black only darkens, so the image keeps its own colour.
+            Narrow screens get a mostly even wash because the copy runs full
+            width there; from `lg` the copy is left-half only, so the darkening
+            is biased hard left and clears the photograph well before centre. */}
+        <div className="absolute inset-0 bg-black/40 lg:hidden" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/10 via-55% to-black/55 lg:hidden" />
+        <div className="absolute inset-0 hidden bg-linear-to-r from-black/82 via-black/38 via-32% to-transparent to-58% lg:block" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent via-42% to-black/25" />
+        <div className="bg-grid-drift absolute inset-0 opacity-20" />
       </div>
 
       <Container>
@@ -292,11 +303,13 @@ export function Hero() {
             delay={0.12}
             className="mt-6 text-display-2xl text-white"
           >
-            {"Power you can "}
+            {"Canberra’s Local Solar &"}
+            <br />
+            {"Electrical "}
             <Word>
               <span className="relative inline-block">
                 <span className="text-gradient-light text-gradient-animate">
-                  trust.
+                  Experts
                 </span>
                 {/* Hand-drawn underline that draws itself once the word lands */}
                 <svg
@@ -318,36 +331,33 @@ export function Hero() {
                 </svg>
               </span>
             </Word>
-            <br />
-            {"Energy you own."}
           </SplitWords>
 
           <motion.p
             {...rise(0.5)}
             className="mt-7 max-w-xl text-base leading-relaxed text-brand-100/80 sm:text-lg"
           >
-            Master electricians and NABCEP-certified solar installers under one
-            roof. We wire, power, store and back up Central Texas homes and
-            businesses — and we put every number in writing before you sign.
+            Helping Canberra homes and businesses stay powered, efficient and
+            ready for whatever the ACT weather brings.
           </motion.p>
 
           <motion.ul
             {...rise(0.58)}
-            className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6"
+            className="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {proofPoints.map((point, pointIndex) => (
+            {proofPoints.map(({ label, icon: Icon }, pointIndex) => (
               <motion.li
-                key={point}
+                key={label}
                 initial={reduce ? false : { opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.66 + pointIndex * 0.09, ease }}
-                className="group flex items-center gap-2.5 text-[0.9375rem] text-brand-100/85"
+                transition={{ duration: 0.5, delay: 0.66 + pointIndex * 0.07, ease }}
+                className="group flex items-start gap-2.5 text-[0.875rem] leading-snug text-brand-100/85"
               >
-                <CheckCircle2
+                <Icon
                   aria-hidden
-                  className="size-[1.15rem] shrink-0 text-brand-300 transition-transform duration-300 group-hover:scale-125"
+                  className="mt-px size-[1.05rem] shrink-0 text-brand-300 transition-transform duration-300 group-hover:scale-125"
                 />
-                {point}
+                {label}
               </motion.li>
             ))}
           </motion.ul>
@@ -457,7 +467,7 @@ export function Hero() {
                     <span
                       aria-hidden
                       className={cn(
-                        "absolute inset-0 bg-brand-950/55 transition-opacity duration-500",
+                        "absolute inset-0 bg-black/40 transition-opacity duration-500",
                         isActive && "opacity-0",
                       )}
                     />

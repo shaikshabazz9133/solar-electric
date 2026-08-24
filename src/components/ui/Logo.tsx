@@ -70,10 +70,7 @@ export function Logo({
             tone === "light" ? "text-ink-950" : "text-white",
           )}
         >
-          North
-          <span className={tone === "light" ? "text-brand-600" : "text-brand-300"}>
-            Star
-          </span>
+          Eagle
         </span>
         <span
           className={cn(

@@ -1,231 +1,104 @@
-"use client";
-
-import { AnimatePresence, motion } from "framer-motion";
-import { usePrefersReducedMotion } from "@/lib/hooks";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { BadgeCheck } from "lucide-react";
 import { Container, Eyebrow } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { Rating } from "@/components/ui/Rating";
-import { Counter } from "@/components/ui/Counter";
+import { LogoMark } from "@/components/ui/Logo";
 import { testimonials } from "@/lib/data/testimonials";
-import { cn } from "@/lib/utils";
-
-const AUTOPLAY_MS = 7000;
+import { siteConfig } from "@/lib/site";
 
 export function Testimonials() {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
-  const reduce = usePrefersReducedMotion();
-
-  const go = useCallback(
-    (next: number, dir: number) => {
-      setDirection(dir);
-      setIndex((next + testimonials.length) % testimonials.length);
-    },
-    [],
-  );
-
-  useEffect(() => {
-    if (paused || reduce) return;
-    const timer = setTimeout(() => go(index + 1, 1), AUTOPLAY_MS);
-    return () => clearTimeout(timer);
-  }, [index, paused, reduce, go]);
-
-  const active = testimonials[index];
-
   return (
     <section
-      className="section-y group/reviews relative isolate overflow-hidden bg-ink-50/60"
-      aria-roledescription="carousel"
+      className="section-y relative isolate overflow-hidden bg-ink-50/60"
       aria-label="Customer reviews"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-ink opacity-60" />
 
       <Container className="relative">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          {/* Left rail */}
-          <div>
-            <Reveal>
-              <Eyebrow>Client reviews</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <h2 className="mt-5 text-display-lg">
-                687 reviews.{" "}
-                <span className="text-gradient-brand">4.9 average.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-ink-600 sm:text-base">
-                Collected across Google, Angi and SolarReviews since 2008. We
-                publish the one-star ones too — you can read every review on our
-                Google profile.
-              </p>
-            </Reveal>
+        <div className="flex flex-col items-center text-center">
+          <Reveal>
+            <Eyebrow>Client reviews</Eyebrow>
+          </Reveal>
+        </div>
 
-            <Reveal delay={0.18}>
-              <dl className="mt-10 grid grid-cols-2 gap-5">
-                {[
-                  { value: 687, suffix: "", label: "Verified reviews" },
-                  { value: 98, suffix: "%", label: "Would recommend" },
-                  { value: 4.9, suffix: "", label: "Average rating", decimals: 1 },
-                  { value: 2, suffix: " hr", label: "Emergency response" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-ink-100 bg-white p-5"
-                  >
-                    <dt className="sr-only">{item.label}</dt>
-                    <dd>
-                      <span className="block font-display text-2xl font-extrabold text-ink-950">
-                        <Counter
-                          value={item.value}
-                          suffix={item.suffix}
-                          decimals={item.decimals ?? 0}
-                        />
-                      </span>
-                      <span className="mt-1 block text-[0.8125rem] text-ink-500">
-                        {item.label}
-                      </span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-          </div>
-
-          {/* Carousel */}
-          <Reveal delay={0.1} direction="left">
-            <div className="relative">
-              <div className="relative min-h-96 sm:min-h-88">
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.figure
-                    key={index}
-                    custom={direction}
-                    initial={
-                      reduce
-                        ? { opacity: 0 }
-                        : { opacity: 0, x: direction * 40, scale: 0.98 }
-                    }
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={
-                      reduce
-                        ? { opacity: 0 }
-                        : { opacity: 0, x: direction * -40, scale: 0.98 }
-                    }
-                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative flex h-full flex-col rounded-4xl border border-ink-100 bg-white p-7 shadow-lift sm:p-9"
-                    aria-live="polite"
-                  >
-                    <Quote
-                      aria-hidden
-                      className="animate-bob-slow absolute right-8 top-8 size-14 text-brand-50"
-                      strokeWidth={1.5}
-                    />
-
-                    <div className="relative flex items-center gap-3">
-                      <Rating value={active.rating} size="md" />
-                      <span className="rounded-full bg-brand-50 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-brand-700">
-                        {active.service}
-                      </span>
-                    </div>
-
-                    <blockquote className="relative mt-6 flex-1">
-                      <motion.p
-                        initial={reduce ? false : { opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-lg leading-relaxed text-ink-800 sm:text-xl"
-                      >
-                        &ldquo;{active.quote}&rdquo;
-                      </motion.p>
-                    </blockquote>
-
-                    <figcaption className="mt-8 flex items-center gap-4 border-t border-ink-100 pt-6">
-                      <motion.span
-                        aria-hidden
-                        initial={reduce ? false : { scale: 0.6, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ type: "spring", stiffness: 380, damping: 18, delay: 0.12 }}
-                        className="grid size-12 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand-600 to-brand-800 font-display text-sm font-bold text-white"
-                      >
-                        {active.initials}
-                      </motion.span>
-                      <span>
-                        <span className="block font-semibold text-ink-950">
-                          {active.name}
-                        </span>
-                        <span className="block text-[0.875rem] text-ink-500">
-                          {active.role} · {active.location}
-                        </span>
-                      </span>
-                    </figcaption>
-                  </motion.figure>
-                </AnimatePresence>
-              </div>
-
-              {/* Controls */}
-              <div className="mt-6 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-2" role="tablist" aria-label="Choose review">
-                  {testimonials.map((item, dotIndex) => (
-                    <button
-                      key={item.name}
-                      type="button"
-                      role="tab"
-                      aria-selected={dotIndex === index}
-                      aria-label={`Review ${dotIndex + 1} of ${testimonials.length}: ${item.name}`}
-                      onClick={() => go(dotIndex, dotIndex > index ? 1 : -1)}
-                      className={cn(
-                        "h-2 overflow-hidden rounded-full transition-all duration-300",
-                        dotIndex === index
-                          ? // The track sits behind the countdown fill; with
-                            // motion off there is no fill, so keep it solid.
-                            reduce
-                            ? "w-8 bg-brand-600"
-                            : "w-8 bg-brand-200"
-                          : "w-2 bg-ink-300 hover:bg-ink-400",
-                      )}
-                    >
-                      {/* Autoplay countdown. Keyed on `index` so it restarts
-                          with each slide, and paused by the same hover that
-                          pauses the timer. */}
-                      {dotIndex === index && !reduce ? (
-                        <span
-                          key={index}
-                          aria-hidden
-                          className="animate-autoplay block size-full origin-left rounded-full bg-brand-600 group-hover/reviews:[animation-play-state:paused] group-focus-within/reviews:[animation-play-state:paused]"
-                        />
-                      ) : null}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => go(index - 1, -1)}
-                    aria-label="Previous review"
-                    className="grid size-11 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
-                  >
-                    <ChevronLeft aria-hidden className="size-5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => go(index + 1, 1)}
-                    aria-label="Next review"
-                    className="grid size-11 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
-                  >
-                    <ChevronRight aria-hidden className="size-5" />
-                  </button>
-                </div>
+        {/* Flex, not grid: `min-w-0 flex-1` is the one combination that reliably
+            lets a horizontal scroller sit beside a fixed-width panel. Without
+            the `min-w-0` the fixed-width cards set the flex item's automatic
+            minimum, the row grows past the page, and the rail never scrolls
+            because it is never narrower than its own contents. */}
+        <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-10">
+          {/* Score card */}
+          <Reveal delay={0.1} className="lg:w-72 lg:shrink-0">
+            <div className="flex h-full items-center gap-5 rounded-3xl border border-ink-100 bg-white p-6 shadow-soft lg:flex-col lg:items-start lg:gap-4">
+              <LogoMark className="size-14 shrink-0" />
+              <div className="min-w-0">
+                <p className="font-display text-base font-bold leading-snug text-ink-950">
+                  {siteConfig.name}
+                </p>
+                <span className="mt-2 flex items-center gap-2">
+                  <Rating value={5} size="md" />
+                  <span className="font-display text-[0.9375rem] font-bold text-ink-950">
+                    4.9
+                  </span>
+                </span>
+                <p className="mt-2 text-[0.875rem] text-ink-500">
+                  Based on 687 verified reviews
+                </p>
               </div>
             </div>
           </Reveal>
+
+          {/* Rail — swipe on touch, trackpad or shift-scroll on desktop. No
+              controls: the scrollbar is hidden and the arrows are gone. */}
+          <div className="no-scrollbar min-w-0 flex-1 snap-x snap-mandatory overflow-x-auto py-6">
+            <StaggerGroup className="flex gap-5" stagger={0.08}>
+              {testimonials.map((item) => (
+                <StaggerItem
+                  key={item.name}
+                  className="w-[80vw] shrink-0 snap-start sm:w-80"
+                  lift
+                >
+                  <figure className="group flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift">
+                    <figcaption className="flex items-center gap-3">
+                      <span
+                        aria-hidden
+                        className="grid size-11 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand-600 to-brand-800 font-display text-[0.8125rem] font-bold text-white"
+                      >
+                        {item.initials}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate font-display text-[0.9375rem] font-bold text-ink-950">
+                          {item.name}
+                        </span>
+                        <span className="block truncate text-[0.8125rem] text-ink-500">
+                          {item.role} · {item.location}
+                        </span>
+                      </span>
+                    </figcaption>
+
+                    <div className="mt-4 flex items-center gap-2">
+                      <Rating value={item.rating} size="sm" />
+                      <BadgeCheck
+                        aria-label="Verified customer"
+                        className="size-4 shrink-0 text-brand-600"
+                      />
+                      <span className="ml-auto truncate text-[0.625rem] font-bold uppercase tracking-widest text-ink-400">
+                        {item.service}
+                      </span>
+                    </div>
+
+                    {/* Clamped so one long review cannot stretch its card
+                        taller than the rest — the rail stays one height. */}
+                    <blockquote className="mt-4 flex-1">
+                      <p className="line-clamp-5 text-[0.9375rem] leading-relaxed text-ink-700">
+                        {item.quote}
+                      </p>
+                    </blockquote>
+                  </figure>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
         </div>
       </Container>
     </section>

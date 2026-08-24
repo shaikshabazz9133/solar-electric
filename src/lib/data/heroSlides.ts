@@ -27,7 +27,7 @@ export type HeroSlide = {
 export const heroSlides: HeroSlide[] = [
   {
     src: "/images/hero/solar-lift.jpg",
-    alt: "A NorthStar installer lifting a photovoltaic module into position on a metal roof",
+    alt: "A Eagle installer lifting a photovoltaic module into position on a metal roof",
     kicker: "Solar + storage",
     title: "Setting an 8.4 kW rooftop array",
     location: "Dripping Springs, TX",

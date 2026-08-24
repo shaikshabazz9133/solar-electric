@@ -44,6 +44,7 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  descriptionAs: Description = "p",
   crumbs,
   stats,
   children,
@@ -52,6 +53,8 @@ export function PageHero({
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
+  /** Promote the standfirst to a real heading where it carries page keywords. */
+  descriptionAs?: "p" | "h2";
   crumbs?: Crumb[];
   stats?: { value: string; label: string }[];
   children?: ReactNode;
@@ -92,9 +95,12 @@ export function PageHero({
 
           {description ? (
             <Reveal delay={0.14}>
-              <p className="max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
+              {/* `font-sans font-normal` undoes the base heading styles when
+                  this renders as an h2 — it should read as a standfirst, not as
+                  a second title. */}
+              <Description className="max-w-2xl font-sans text-base font-normal leading-relaxed text-brand-100/80 sm:text-lg">
                 {description}
-              </p>
+              </Description>
             </Reveal>
           ) : null}
 

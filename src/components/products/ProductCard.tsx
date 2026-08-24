@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/lib/icons";
 import type { Product } from "@/lib/data/products";
@@ -21,26 +22,31 @@ const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
 export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink-100 bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-float">
-      {/* Visual */}
+      {/* Visual. The photograph carries the frame; the accent gradient survives
+          only as the colour behind it while it loads, and the icon moves to a
+          corner chip so it labels the card instead of standing in for it. */}
       <div
         className={cn(
           "relative isolate aspect-[4/3] overflow-hidden bg-linear-to-br",
           accents[product.accent],
         )}
       >
-        <div aria-hidden className="absolute inset-0 bg-grid opacity-70" />
+        <Image
+          src={product.image}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* Just enough at the foot of the frame to seat the brand chip */}
         <div
           aria-hidden
-          className="absolute -right-10 -top-10 size-40 rounded-full bg-white/15 blur-2xl transition-transform duration-700 group-hover:scale-125"
+          className="absolute inset-0 bg-linear-to-t from-black/55 via-transparent to-transparent"
         />
-        <div className="absolute inset-0 grid place-items-center">
-          <Icon
-            name={product.icon}
-            aria-hidden
-            className="size-20 text-white/85 transition-transform duration-700 group-hover:scale-110"
-            strokeWidth={1.1}
-          />
-        </div>
+
+        <span className="absolute right-4 top-4 grid size-10 place-items-center rounded-xl bg-black/45 text-white ring-1 ring-white/25 backdrop-blur-sm transition-colors duration-500 group-hover:bg-flag-700 group-hover:ring-flag-600">
+          <Icon name={product.icon} aria-hidden className="size-5" strokeWidth={1.4} />
+        </span>
 
         {product.badge ? (
           <span
@@ -53,7 +59,7 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         ) : null}
 
-        <span className="absolute bottom-4 left-4 rounded-full bg-white/15 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm ring-1 ring-white/25">
+        <span className="absolute bottom-4 left-4 rounded-full bg-black/50 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm ring-1 ring-white/25">
           {product.brand}
         </span>
       </div>
@@ -90,7 +96,7 @@ export function ProductCard({ product }: { product: Product }) {
           </p>
           <Link
             href={`/contact?product=${product.id}`}
-            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-50 px-4 py-2.5 text-[0.8125rem] font-semibold text-brand-700 transition-all duration-300 hover:bg-brand-600 hover:text-white"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-flag-50 px-4 py-2.5 text-[0.8125rem] font-semibold text-flag-700 transition-all duration-300 hover:bg-flag-700 hover:text-white"
           >
             Get a quote
             <ArrowRight

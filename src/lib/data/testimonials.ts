@@ -61,7 +61,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "We tendered the fit-out to five contractors. NorthStar was not the cheapest, but they were the only ones who flagged a distribution clash in the drawings before we broke ground. That saved us five figures.",
+      "We tendered the fit-out to five contractors. Eagle was not the cheapest, but they were the only ones who flagged a distribution clash in the drawings before we broke ground. That saved us five figures.",
     name: "Alicia Moreno",
     role: "Development Manager",
     location: "Austin, TX",

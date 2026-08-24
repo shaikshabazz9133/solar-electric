@@ -16,19 +16,32 @@ type Size = "sm" | "md" | "lg";
 const base =
   "group relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-semibold tracking-tight transition-all duration-300 ease-out will-change-transform sheen-hover active:scale-[0.97] disabled:pointer-events-none disabled:opacity-55 whitespace-nowrap";
 
+// Buttons run on the flag red (#a32c44 — `flag-700`) against white, rather than
+// the brand blue the rest of the interface is built from. That separation is
+// the point: blue is the surface colour of the site, so an action painted in it
+// competes with every panel and icon chip around it. Red appears nowhere else
+// at this weight, which is what makes a CTA findable at a glance.
+//
+// White on `flag-700` measures 6.98:1, and `flag-700` on white measures the
+// same, so both directions clear WCAG AA for body-sized text — the filled and
+// the inverted variants below are equally safe.
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand-600 text-white shadow-[0_10px_30px_-10px_rgba(50,88,159,0.7)] hover:bg-brand-700 hover:shadow-[0_18px_40px_-12px_rgba(50,88,159,0.65)] hover:-translate-y-0.5 active:translate-y-0",
+    "bg-flag-700 text-white shadow-[0_10px_30px_-10px_rgba(163,44,68,0.7)] hover:bg-flag-800 hover:shadow-[0_18px_40px_-12px_rgba(163,44,68,0.6)] hover:-translate-y-0.5 active:translate-y-0",
   secondary:
-    "bg-brand-900 text-white shadow-[0_10px_30px_-12px_rgba(24,48,94,0.8)] hover:bg-brand-950 hover:-translate-y-0.5 active:translate-y-0",
+    "bg-flag-900 text-white shadow-[0_10px_30px_-12px_rgba(105,28,43,0.8)] hover:bg-flag-800 hover:-translate-y-0.5 active:translate-y-0",
+  // The inverse pairing: white surface, red lettering. Used where a filled red
+  // button would be the second red thing in the same block.
   ghost:
-    "bg-white text-brand-900 ring-1 ring-ink-200 shadow-soft hover:ring-brand-300 hover:bg-brand-50 hover:-translate-y-0.5 active:translate-y-0",
+    "bg-white text-flag-700 ring-1 ring-ink-200 shadow-soft hover:ring-flag-300 hover:bg-flag-50 hover:-translate-y-0.5 active:translate-y-0",
   light:
-    "bg-white text-brand-900 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] hover:bg-brand-50 hover:-translate-y-0.5 active:translate-y-0",
+    "bg-white text-flag-700 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] hover:bg-flag-50 hover:-translate-y-0.5 active:translate-y-0",
+  // Sits on photography, so it starts as a white outline and resolves into the
+  // red fill on hover rather than washing out to translucent white.
   "outline-light":
-    "text-white ring-1 ring-white/35 bg-white/5 backdrop-blur-sm hover:bg-white/15 hover:ring-white/60 hover:-translate-y-0.5 active:translate-y-0",
+    "text-white ring-1 ring-white/40 bg-white/5 backdrop-blur-sm hover:bg-flag-700 hover:ring-flag-600 hover:-translate-y-0.5 active:translate-y-0",
   danger:
-    "bg-flag-700 text-white shadow-[0_10px_30px_-12px_rgba(163,44,68,0.75)] hover:bg-flag-800 hover:-translate-y-0.5 active:translate-y-0",
+    "bg-flag-900 text-white shadow-[0_10px_30px_-12px_rgba(105,28,43,0.85)] hover:bg-flag-800 hover:-translate-y-0.5 active:translate-y-0",
 };
 
 const sizes: Record<Size, string> = {

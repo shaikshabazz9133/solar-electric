@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone, Zap } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { PageHero } from "@/components/ui/PageHero";
 import { Container } from "@/components/ui/Section";
@@ -43,46 +43,17 @@ export default async function ContactPage({ searchParams }: Props) {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Tell us what you need. We'll tell you what it takes."
-        description="A licensed electrician reviews every enquiry personally. Most quotes are back within 48 hours, and emergencies are dispatched the same day."
+        title="Tell us what you need. We’re here to help."
+        description="Our local team provides reliable solar and electrical services across Canberra and surrounding regions. Get in touch for a free quote or to discuss your project."
+        descriptionAs="h2"
         crumbs={[{ label: "Contact" }]}
       />
 
       <section className="section-y bg-white">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
+          <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             {/* Details */}
-            <div className="flex flex-col gap-6">
-              <Reveal>
-                <a
-                  href={siteConfig.emergencyPhoneHref}
-                  className="group relative isolate block overflow-hidden rounded-4xl bg-flag-700 p-7 text-white transition-transform duration-500 hover:-translate-y-1 sm:p-8"
-                >
-                  <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-                    <div className="absolute inset-0 bg-grid opacity-50" />
-                    <div className="absolute -right-12 -top-12 size-48 rounded-full bg-white/15 blur-2xl" />
-                  </div>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em] ring-1 ring-white/25">
-                    <span className="relative flex size-2">
-                      <span className="absolute inline-flex size-full animate-pulse-ring rounded-full bg-white" />
-                      <span className="relative inline-flex size-2 rounded-full bg-white" />
-                    </span>
-                    24/7 Emergency
-                  </span>
-                  <h2 className="mt-5 font-display text-xl font-bold text-white sm:text-2xl">
-                    No power? Burning smell? Call now.
-                  </h2>
-                  <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-white/85">
-                    A dispatcher answers in under 60 seconds and a licensed
-                    electrician is on the way — nights, weekends and holidays.
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-3 font-display text-2xl font-extrabold">
-                    <Zap aria-hidden className="size-6" />
-                    {siteConfig.emergencyPhone}
-                  </span>
-                </a>
-              </Reveal>
-
+            <div className="flex flex-col gap-6 lg:sticky lg:top-32">
               <Reveal delay={0.08}>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
                   <ContactCard
@@ -145,33 +116,6 @@ export default async function ContactPage({ searchParams }: Props) {
                 </div>
               </Reveal>
 
-              <Reveal delay={0.2}>
-                <div className="relative isolate overflow-hidden rounded-4xl bg-brand-950 p-7 text-white">
-                  <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-                    <div className="absolute inset-0 bg-grid opacity-60" />
-                    <div className="absolute -bottom-16 -left-10 size-56 rounded-full bg-brand-600/40 blur-3xl" />
-                  </div>
-                  <h3 className="font-display text-base font-bold text-white">
-                    What happens after you hit send
-                  </h3>
-                  <ol className="mt-5 flex flex-col gap-4">
-                    {[
-                      "A licensed electrician reads your request — not a sales rep.",
-                      "We call to confirm scope and book a site visit if one is needed.",
-                      "You get a written fixed-price quote, usually within 48 hours.",
-                    ].map((step, index) => (
-                      <li key={step} className="flex gap-3.5">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-full bg-white/10 font-display text-[0.75rem] font-bold text-brand-200 ring-1 ring-white/15">
-                          {index + 1}
-                        </span>
-                        <span className="text-[0.9375rem] leading-relaxed text-brand-100/80">
-                          {step}
-                        </span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </Reveal>
             </div>
 
             {/* Form */}

@@ -4,7 +4,7 @@ Placeholder photography for the home-page hero, pending the company's own job
 photos. Every frame is a real crew on a real job, and every frame is licensed
 for commercial use. Cropped to 3:2 and re-encoded; otherwise unaltered.
 
-Replace these files (same names, same 3:2 crop) with NorthStar's own site
+Replace these files (same names, same 3:2 crop) with Eagle's own site
 photos and this file can be deleted — see `src/lib/data/heroSlides.ts` for the
 captions attached to each one.
 

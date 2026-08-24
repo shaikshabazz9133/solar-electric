@@ -78,7 +78,7 @@ export const services: Service[] = [
     ],
     priceFrom: "Free design & quote",
     turnaround: "3–5 weeks to power-on",
-    image: "/images/service-solar.svg",
+    image: "/images/services/solar.jpg",
   },
   {
     slug: "battery",
@@ -138,7 +138,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $11,400 installed",
     turnaround: "2–4 weeks",
-    image: "/images/service-battery.svg",
+    image: "/images/services/battery.jpg",
   },
   {
     slug: "air-conditioning",
@@ -198,7 +198,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $2,190 installed",
     turnaround: "Often same week",
-    image: "/images/service-air-conditioning.svg",
+    image: "/images/services/air-conditioning.jpg",
   },
   {
     slug: "ev-charger",
@@ -258,7 +258,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $749 installed",
     turnaround: "Often same week",
-    image: "/images/service-ev.svg",
+    image: "/images/services/ev-charger.jpg",
   },
   {
     slug: "residential",
@@ -318,7 +318,7 @@ export const services: Service[] = [
     ],
     priceFrom: "$189 service call",
     turnaround: "Next-day booking",
-    image: "/images/service-residential.svg",
+    image: "/images/services/residential.jpg",
   },
   {
     slug: "electric-heat-pumps",
@@ -378,7 +378,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $3,600 installed",
     turnaround: "1–2 weeks",
-    image: "/images/service-heat-pump.svg",
+    image: "/images/services/electric-heat-pumps.jpg",
   },
   {
     slug: "induction-cooktop",
@@ -438,7 +438,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $890 installed",
     turnaround: "Next-day booking",
-    image: "/images/service-induction.svg",
+    image: "/images/services/induction-cooktop.jpg",
   },
   {
     slug: "test-and-tag",
@@ -498,7 +498,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $4.50 per item",
     turnaround: "Booked within a week",
-    image: "/images/service-test-and-tag.svg",
+    image: "/images/services/test-and-tag.jpg",
   },
   {
     slug: "meter-box-upgrade",
@@ -558,7 +558,7 @@ export const services: Service[] = [
     ],
     priceFrom: "From $2,850",
     turnaround: "1–2 weeks",
-    image: "/images/service-meter-box.svg",
+    image: "/images/services/meter-box-upgrade.jpg",
   },
 ];
 

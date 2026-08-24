@@ -66,7 +66,7 @@ export default async function OpengraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ color: "#ffffff", fontSize: 34, fontWeight: 800 }}>
-              NorthStar
+              Eagle
             </span>
             <span
               style={{
@@ -92,7 +92,7 @@ export default async function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            Power you can trust. Energy you own.
+            Canberra’s Local Solar & Electrical Experts
           </span>
           <span style={{ color: "#c8d6ef", fontSize: 28, maxWidth: 820 }}>
             Licensed master electricians &amp; NABCEP-certified solar installers

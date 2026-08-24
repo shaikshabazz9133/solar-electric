@@ -25,6 +25,13 @@ export type Product = {
   badge?: "Best seller" | "New" | "Premium" | "Best value";
   accent: "blue" | "deep" | "red" | "slate";
   icon: string;
+  /**
+   * Photograph for the card. These show the category of kit, not the exact SKU
+   * — the model names here are Eagle's own lines, so a stock shot of a
+   * specific competitor's hardware would be worse than a representative one.
+   * Swap for real product shots when the supplier supplies them.
+   */
+  image: string;
 };
 
 export const productCategories: ProductCategory[] = [
@@ -33,11 +40,11 @@ export const productCategories: ProductCategory[] = [
     label: "Solar Panels",
     icon: "sun",
     blurb: "Tier-1 modules with 25-year performance guarantees.",
-    image: "/images/product-solar-panels.svg",
+    image: "/images/products/solar-panels-1.jpg",
     gallery: [
-      { src: "/images/product-solar-panels.svg", caption: "Array laid out to the shade model" },
-      { src: "/images/product-solar-panels-2.svg", caption: "Rail-less mounting, flashed and sealed" },
-      { src: "/images/product-solar-panels-3.svg", caption: "Per-panel production, day one" },
+      { src: "/images/products/solar-panels-1.jpg", caption: "Array laid out to the shade model" },
+      { src: "/images/products/solar-panels-2.jpg", caption: "Rail-less mounting, flashed and sealed" },
+      { src: "/images/products/solar-panels-3.jpg", caption: "Modules clamped down and torqued" },
     ],
   },
   {
@@ -45,11 +52,11 @@ export const productCategories: ProductCategory[] = [
     label: "Inverters",
     icon: "cpu",
     blurb: "String, hybrid and microinverter platforms.",
-    image: "/images/product-inverters.svg",
+    image: "/images/products/inverters-1.jpg",
     gallery: [
-      { src: "/images/product-inverters.svg", caption: "Hybrid inverter and backup gateway" },
-      { src: "/images/product-inverters-2.svg", caption: "DC strings landed and labelled" },
-      { src: "/images/product-inverters-3.svg", caption: "Commissioning report on handover" },
+      { src: "/images/products/inverters-1.jpg", caption: "Inverters mounted where they can breathe" },
+      { src: "/images/products/inverters-2.jpg", caption: "Inverter, disconnect and meter in one run" },
+      { src: "/images/products/inverters-3.jpg", caption: "Microinverter — one per module" },
     ],
   },
   {
@@ -57,11 +64,11 @@ export const productCategories: ProductCategory[] = [
     label: "EV Chargers",
     icon: "ev",
     blurb: "Level 2 charging for homes and fleets.",
-    image: "/images/product-ev-chargers.svg",
+    image: "/images/products/ev-chargers-1.jpg",
     gallery: [
-      { src: "/images/product-ev-chargers.svg", caption: "48A hardwired, garage install" },
-      { src: "/images/product-ev-chargers-2.svg", caption: "Conduit run along the framing line" },
-      { src: "/images/product-ev-chargers-3.svg", caption: "Load management across four bays" },
+      { src: "/images/products/ev-chargers-1.jpg", caption: "Level 2 charging at home, overnight" },
+      { src: "/images/products/ev-chargers-2.jpg", caption: "Conduit run along the framing line" },
+      { src: "/images/products/ev-chargers-3.jpg", caption: "Multi-bay charging for fleets" },
     ],
   },
   {
@@ -69,11 +76,11 @@ export const productCategories: ProductCategory[] = [
     label: "Battery Storage",
     icon: "battery",
     blurb: "Stackable storage from 10 kWh to 40 kWh.",
-    image: "/images/product-battery-storage.svg",
+    image: "/images/products/battery-storage-1.jpg",
     gallery: [
-      { src: "/images/product-battery-storage.svg", caption: "Wall-mounted stack, 27 kWh" },
-      { src: "/images/product-battery-storage-2.svg", caption: "Backup sub-panel and transfer gear" },
-      { src: "/images/product-battery-storage-3.svg", caption: "Outage drill before we leave site" },
+      { src: "/images/products/battery-storage-1.jpg", caption: "Rack-mounted stack, sized to the load study" },
+      { src: "/images/products/battery-storage-2.jpg", caption: "Backup sub-panel and transfer gear" },
+      { src: "/images/products/battery-storage-3.jpg", caption: "Commercial-scale storage, same platform" },
     ],
   },
   {
@@ -81,11 +88,11 @@ export const productCategories: ProductCategory[] = [
     label: "Heat Pump",
     icon: "thermometer",
     blurb: "Space and hot-water units that run on solar.",
-    image: "/images/product-heat-pump.svg",
+    image: "/images/products/heat-pump-1.jpg",
     gallery: [
-      { src: "/images/product-heat-pump.svg", caption: "Outdoor unit on an isolated pad" },
-      { src: "/images/product-heat-pump-2.svg", caption: "Ducted air balanced room by room" },
-      { src: "/images/product-heat-pump-3.svg", caption: "Schedule tuned to your solar hours" },
+      { src: "/images/products/heat-pump-1.jpg", caption: "Outdoor unit on an isolated pad" },
+      { src: "/images/products/heat-pump-2.jpg", caption: "Indoor head, quiet at low fan" },
+      { src: "/images/products/heat-pump-3.jpg", caption: "Schedule tuned to your solar hours" },
     ],
   },
   {
@@ -93,11 +100,11 @@ export const productCategories: ProductCategory[] = [
     label: "Ceiling Vacuum & Insulation Removal",
     icon: "waves",
     blurb: "HEPA-filtered clear-outs of old ceiling insulation.",
-    image: "/images/product-ceiling-vacuum.svg",
+    image: "/images/products/ceiling-vacuum-1.jpg",
     gallery: [
-      { src: "/images/product-ceiling-vacuum.svg", caption: "Extraction hose fed into the cavity" },
-      { src: "/images/product-ceiling-vacuum-2.svg", caption: "Old batts lifted and bagged" },
-      { src: "/images/product-ceiling-vacuum-3.svg", caption: "Joists back to bare, ready to re-fit" },
+      { src: "/images/products/ceiling-vacuum-1.jpg", caption: "Extraction hose fed into the cavity" },
+      { src: "/images/products/ceiling-vacuum-2.jpg", caption: "Old batts pulled back off the joists" },
+      { src: "/images/products/ceiling-vacuum-3.jpg", caption: "Cavity prepped before the new fit" },
     ],
   },
   {
@@ -105,11 +112,11 @@ export const productCategories: ProductCategory[] = [
     label: "Ceiling Insulation",
     icon: "layers",
     blurb: "High-R batts and blown-in fill, installed to spec.",
-    image: "/images/product-ceiling-insulation.svg",
+    image: "/images/products/ceiling-insulation-1.jpg",
     gallery: [
-      { src: "/images/product-ceiling-insulation.svg", caption: "R6.0 batts friction-fit, no gaps" },
-      { src: "/images/product-ceiling-insulation-2.svg", caption: "Blown-in fill for low clearances" },
-      { src: "/images/product-ceiling-insulation-3.svg", caption: "Depth checked against the spec" },
+      { src: "/images/products/ceiling-insulation-1.jpg", caption: "R6.0 batts friction-fit, no gaps" },
+      { src: "/images/products/ceiling-insulation-2.jpg", caption: "Vapour layer set before the fill" },
+      { src: "/images/products/ceiling-insulation-3.jpg", caption: "Batts on site, R-value checked" },
     ],
   },
 ];
@@ -132,6 +139,7 @@ export const products: Product[] = [
     badge: "Best seller",
     accent: "blue",
     icon: "sun",
+    image: "/images/products/solar-panels-1.jpg",
   },
   {
     id: "np-410",
@@ -148,6 +156,7 @@ export const products: Product[] = [
     warranty: "25-year product · 25-year performance",
     accent: "slate",
     icon: "sun",
+    image: "/images/products/solar-panels-2.jpg",
   },
   {
     id: "sv-460",
@@ -165,6 +174,7 @@ export const products: Product[] = [
     badge: "Premium",
     accent: "deep",
     icon: "sun",
+    image: "/images/products/solar-panels-3.jpg",
   },
 
   // ---- Inverters ----
@@ -184,6 +194,7 @@ export const products: Product[] = [
     badge: "Best value",
     accent: "blue",
     icon: "cpu",
+    image: "/images/products/inverters-1.jpg",
   },
   {
     id: "mi-q8",
@@ -200,6 +211,7 @@ export const products: Product[] = [
     warranty: "25-year limited",
     accent: "deep",
     icon: "cpu",
+    image: "/images/products/inverters-3.jpg",
   },
   {
     id: "hx-11-4",
@@ -216,13 +228,14 @@ export const products: Product[] = [
     warranty: "10-year standard",
     accent: "slate",
     icon: "cpu",
+    image: "/images/products/inverters-2.jpg",
   },
 
   // ---- Batteries ----
   {
     id: "vault-13",
-    name: "NorthStar Vault 13.5",
-    brand: "NorthStar",
+    name: "Eagle Vault 13.5",
+    brand: "Eagle",
     category: "battery-storage",
     tagline: "Whole-home backup in a single wall-mounted unit.",
     specs: [
@@ -235,11 +248,12 @@ export const products: Product[] = [
     badge: "Best seller",
     accent: "blue",
     icon: "battery",
+    image: "/images/products/battery-storage-1.jpg",
   },
   {
     id: "vault-stack",
-    name: "NorthStar Vault Stack 40",
-    brand: "NorthStar",
+    name: "Eagle Vault Stack 40",
+    brand: "Eagle",
     category: "battery-storage",
     tagline: "Modular stack that grows from 10 kWh to 40 kWh.",
     specs: [
@@ -252,6 +266,7 @@ export const products: Product[] = [
     badge: "New",
     accent: "deep",
     icon: "battery",
+    image: "/images/products/battery-storage-2.jpg",
   },
   {
     id: "aegis-16",
@@ -268,6 +283,7 @@ export const products: Product[] = [
     warranty: "10-year limited",
     accent: "slate",
     icon: "battery",
+    image: "/images/products/battery-storage-3.jpg",
   },
 
   // ---- EV chargers ----
@@ -287,6 +303,7 @@ export const products: Product[] = [
     badge: "Best seller",
     accent: "blue",
     icon: "ev",
+    image: "/images/products/ev-chargers-1.jpg",
   },
   {
     id: "amp-flex",
@@ -304,6 +321,7 @@ export const products: Product[] = [
     badge: "Best value",
     accent: "slate",
     icon: "ev",
+    image: "/images/products/ev-chargers-2.jpg",
   },
   {
     id: "amp-fleet",
@@ -320,6 +338,7 @@ export const products: Product[] = [
     warranty: "5-year commercial",
     accent: "deep",
     icon: "ev",
+    image: "/images/products/ev-chargers-3.jpg",
   },
 
   // ---- Heat pumps ----
@@ -338,6 +357,7 @@ export const products: Product[] = [
     warranty: "10-year parts, 12-year compressor",
     accent: "blue",
     icon: "thermometer",
+    image: "/images/products/heat-pump-1.jpg",
   },
   {
     id: "aur-mini",
@@ -355,6 +375,7 @@ export const products: Product[] = [
     badge: "New",
     accent: "slate",
     icon: "snowflake",
+    image: "/images/products/heat-pump-2.jpg",
   },
   {
     id: "aur-hpwh",
@@ -371,6 +392,7 @@ export const products: Product[] = [
     warranty: "10-year tank",
     accent: "deep",
     icon: "flame",
+    image: "/images/products/heat-pump-3.jpg",
   },
 
   // ---- Ceiling vacuum & insulation removal ----
@@ -390,6 +412,7 @@ export const products: Product[] = [
     badge: "Best seller",
     accent: "slate",
     icon: "waves",
+    image: "/images/products/ceiling-vacuum-1.jpg",
   },
   {
     id: "cv-targeted",
@@ -406,6 +429,7 @@ export const products: Product[] = [
     warranty: "Fixed price, no per-bag charges",
     accent: "deep",
     icon: "fan",
+    image: "/images/products/ceiling-vacuum-2.jpg",
   },
   {
     id: "cv-sanitise",
@@ -422,6 +446,7 @@ export const products: Product[] = [
     warranty: "12-month rodent re-entry cover",
     accent: "blue",
     icon: "sparkles",
+    image: "/images/products/ceiling-vacuum-3.jpg",
   },
 
   // ---- Ceiling insulation ----
@@ -441,6 +466,7 @@ export const products: Product[] = [
     badge: "Best value",
     accent: "blue",
     icon: "layers",
+    image: "/images/products/ceiling-insulation-1.jpg",
   },
   {
     id: "tl-blown",
@@ -458,6 +484,7 @@ export const products: Product[] = [
     badge: "New",
     accent: "deep",
     icon: "brickwall",
+    image: "/images/products/ceiling-insulation-2.jpg",
   },
   {
     id: "tl-poly",
@@ -475,6 +502,7 @@ export const products: Product[] = [
     badge: "Premium",
     accent: "slate",
     icon: "layers",
+    image: "/images/products/ceiling-insulation-3.jpg",
   },
 ];
 

@@ -134,7 +134,7 @@ export function Footer() {
         {/* Service areas */}
         <div className="mt-14 border-t border-white/10 pt-8">
           <h2 className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brand-200/85">
-            Proudly serving Central Texas
+            Proudly serving Canberra and surrounding Regions
           </h2>
           <StaggerGroup className="mt-4 flex flex-wrap gap-2" stagger={0.04} as="ul">
             {siteConfig.serviceAreas.map((area) => (

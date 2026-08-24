@@ -15,7 +15,6 @@ import {
   Clock,
   Menu,
   Phone,
-  ShieldCheck,
   X,
   Zap,
 } from "lucide-react";
@@ -103,10 +102,6 @@ export function Header() {
       >
         <div className="container-page flex h-10 items-center justify-between text-[0.8125rem]">
           <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-2">
-              <ShieldCheck aria-hidden className="size-4 text-brand-300" />
-              {siteConfig.licenses[0]}
-            </span>
             <span className="inline-flex items-center gap-2">
               <Clock aria-hidden className="size-4 text-brand-300" />
               Mon–Fri 7am–7pm · Sat 8am–4pm

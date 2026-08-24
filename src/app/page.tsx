@@ -8,10 +8,6 @@ import { Process } from "@/components/sections/Process";
 import { ProductsPreview } from "@/components/sections/ProductsPreview";
 import { ProjectsShowcase } from "@/components/sections/ProjectsShowcase";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { FaqPreview } from "@/components/sections/FaqPreview";
-import { CtaBand } from "@/components/sections/CtaBand";
-import { FaqJsonLd } from "@/components/seo/JsonLd";
-import { homeFaqs } from "@/lib/data/faqs";
 
 export const metadata: Metadata = {
   title: "Electricians & Solar Installers in Austin, TX",
@@ -32,9 +28,6 @@ export default function HomePage() {
       <ProductsPreview />
       <ProjectsShowcase />
       <Testimonials />
-      <FaqPreview />
-      <CtaBand />
-      <FaqJsonLd items={homeFaqs} />
     </>
   );
 }
