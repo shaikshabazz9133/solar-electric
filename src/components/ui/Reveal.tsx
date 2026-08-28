@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { usePrefersReducedMotion } from "@/lib/hooks";
-import type { ElementType, ReactNode } from "react";
+import { useRef, type ElementType, type ReactNode, type RefObject } from "react";
 import { cn } from "@/lib/utils";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
@@ -120,6 +120,17 @@ export function StaggerGroup({
   as?: ElementType;
 }) {
   const reduce = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  // `animate` rather than `whileInView`: a gesture variant is pushed to the
+  // children that existed when it fired, so on a same-route navigation (e.g.
+  // /products?category=a -> ?category=b) this element survives while its items
+  // remount, and the new ones would stay stuck at `hidden`. Driving the variant
+  // through `animate` means late arrivals inherit `show` from context.
+  const inView = useInView(ref, {
+    once: true,
+    amount,
+    margin: "0px 0px -60px 0px",
+  });
   const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
 
   if (reduce) {
@@ -129,14 +140,14 @@ export function StaggerGroup({
 
   return (
     <MotionTag
+      ref={ref as RefObject<HTMLDivElement>}
       className={className}
       variants={{
         hidden: {},
         show: { transition: { staggerChildren: stagger, delayChildren: 0.04 } },
       }}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount, margin: "0px 0px -60px 0px" }}
+      animate={inView ? "show" : "hidden"}
     >
       {children}
     </MotionTag>
@@ -220,6 +231,11 @@ export function SplitWords({
   play?: "mount" | "view";
 }) {
   const reduce = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  // Same reason as StaggerGroup: the words are keyed by their text, so a
+  // headline change on a same-route navigation remounts them under a parent
+  // that has already fired. `animate` keeps the variant readable from context.
+  const inView = useInView(ref, { once: true, amount: 0.4 });
   const MotionTag = motion[as] as typeof motion.div;
 
   if (reduce) {
@@ -230,13 +246,11 @@ export function SplitWords({
   const animateProps =
     play === "mount"
       ? { animate: "show" as const }
-      : {
-          whileInView: "show" as const,
-          viewport: { once: true, amount: 0.4 } as const,
-        };
+      : { animate: inView ? ("show" as const) : ("hidden" as const) };
 
   return (
     <MotionTag
+      ref={ref as RefObject<HTMLDivElement>}
       className={cn("perspective-midrange", className)}
       variants={wordParent}
       initial="hidden"
