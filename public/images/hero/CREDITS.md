@@ -19,3 +19,12 @@ captions attached to each one.
 CC BY 2.0 requires visible attribution wherever the photo is published. Keep a
 credit line on the site (footer or a `/credits` page) for as long as these
 placeholders are in use.
+
+## Service page hero background
+
+| File | Source | Credit | Licence |
+| --- | --- | --- | --- |
+| `solar-home-install.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Three_men_installing_solar_panels_on_a_house.jpg) | — | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) |
+
+CC0 needs no attribution, so this one can stay until Eagle's own install
+photography is ready. Cropped to 2400×1312 and re-encoded; otherwise unaltered.

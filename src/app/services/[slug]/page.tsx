@@ -11,6 +11,9 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { ServiceCard } from "@/components/sections/ServicesGrid";
+import { ServiceProcessSteps } from "@/components/sections/ServiceProcessSteps";
+import { ServiceExplainer } from "@/components/sections/ServiceExplainer";
+import { ServicePricingTable } from "@/components/sections/ServicePricingTable";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
 import { Icon } from "@/lib/icons";
 import { getService, services } from "@/lib/data/services";
@@ -58,6 +61,10 @@ export default async function ServiceDetailPage({ params }: Params) {
 
   const suggestions = [...related, ...fallback];
 
+  // Solar carries its own process and pricing blocks, so the stock template
+  // sections below them are suppressed rather than repeating the same ground.
+  const showTemplateSections = !service.hideTemplateSections;
+
   return (
     <>
       <PageHero
@@ -68,12 +75,7 @@ export default async function ServiceDetailPage({ params }: Params) {
           { label: "Services", href: "/services" },
           { label: service.title },
         ]}
-        stats={[
-          { value: service.heroStat.value, label: service.heroStat.label },
-          { value: service.priceFrom, label: "Starting at" },
-          { value: service.turnaround, label: "Typical lead time" },
-          { value: "25 yrs", label: "Workmanship warranty" },
-        ]}
+        image={service.heroImage}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="/contact" size="lg" variant="light">
@@ -90,7 +92,20 @@ export default async function ServiceDetailPage({ params }: Params) {
         </div>
       </PageHero>
 
+      {service.processBlock ? (
+        <ServiceProcessSteps block={service.processBlock} />
+      ) : null}
+
+      {service.explainerBlock ? (
+        <ServiceExplainer block={service.explainerBlock} />
+      ) : null}
+
+      {service.pricingBlock ? (
+        <ServicePricingTable block={service.pricingBlock} />
+      ) : null}
+
       {/* Overview + inclusions */}
+      {showTemplateSections ? (
       <section className="section-y bg-white">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -152,8 +167,10 @@ export default async function ServiceDetailPage({ params }: Params) {
           </div>
         </Container>
       </section>
+      ) : null}
 
       {/* How we approach it */}
+      {showTemplateSections ? (
       <section className="section-y relative bg-ink-50/60">
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-ink opacity-70" />
         <Container className="relative">
@@ -183,8 +200,10 @@ export default async function ServiceDetailPage({ params }: Params) {
           </StaggerGroup>
         </Container>
       </section>
+      ) : null}
 
       {/* Steps */}
+      {showTemplateSections ? (
       <section className="section-y bg-white">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
@@ -239,8 +258,10 @@ export default async function ServiceDetailPage({ params }: Params) {
           </div>
         </Container>
       </section>
+      ) : null}
 
       {/* FAQs */}
+      {showTemplateSections ? (
       <section className="section-y bg-ink-50/60">
         <Container>
           <SectionHeading
@@ -253,8 +274,10 @@ export default async function ServiceDetailPage({ params }: Params) {
           </div>
         </Container>
       </section>
+      ) : null}
 
       {/* Related */}
+      {showTemplateSections ? (
       <section className="section-y bg-white">
         <Container>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -286,18 +309,21 @@ export default async function ServiceDetailPage({ params }: Params) {
           </StaggerGroup>
         </Container>
       </section>
+      ) : null}
 
-      <CtaBand
-        title={`Need ${service.title.toLowerCase()}?`}
-        body="Send us the details and we'll come back with a fixed price, a clear scope and a start date."
-      />
+      {showTemplateSections ? (
+        <CtaBand
+          title={`Need ${service.title.toLowerCase()}?`}
+          body="Send us the details and we'll come back with a fixed price, a clear scope and a start date."
+        />
+      ) : null}
 
       <ServiceJsonLd
         name={service.title}
         description={service.summary}
         url={`${siteConfig.url}/services/${service.slug}`}
       />
-      <FaqJsonLd items={service.faqs} />
+      {showTemplateSections ? <FaqJsonLd items={service.faqs} /> : null}
       <BreadcrumbJsonLd
         items={[
           { name: "Home", href: "/" },

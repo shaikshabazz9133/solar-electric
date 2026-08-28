@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { services } from "@/lib/data/services";
-import { productCategories } from "@/lib/data/products";
+import { productCategories, products } from "@/lib/data/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -40,5 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticRoutes, ...serviceRoutes, ...categoryRoutes];
+  const productRoutes: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${base}/products/${product.id}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...categoryRoutes,
+    ...productRoutes,
+  ];
 }

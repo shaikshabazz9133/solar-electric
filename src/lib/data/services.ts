@@ -1,3 +1,35 @@
+/** Long-form process band shown under a service banner, where one is written. */
+export type ServiceProcessBlock = {
+  intro: string[];
+  eyebrow: string;
+  heading: string;
+  headingAccent: string;
+  description: string;
+  steps: { title: string; body: string; icon: string }[];
+};
+
+/** Diagram-led "how it works" explainer shown under a service's process band. */
+export type ServiceExplainerBlock = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  /** Phrase inside `intro` to set in bold. */
+  introEmphasis?: string;
+  points: string[];
+  image: { src: string; alt: string; width: number; height: number };
+};
+
+/** Indicative price list shown under a service's process band. */
+export type ServicePricingBlock = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  columns: [string, string];
+  rows: { size: string; cost: string }[];
+  note: string;
+  outro: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -17,6 +49,17 @@ export type Service = {
   priceFrom: string;
   turnaround: string;
   image: string;
+  /** Full-bleed photograph behind the page banner, where we have one. */
+  heroImage?: { src: string; position?: string };
+  processBlock?: ServiceProcessBlock;
+  explainerBlock?: ServiceExplainerBlock;
+  pricingBlock?: ServicePricingBlock;
+  /**
+   * Pages carrying their own long-form blocks drop the stock template
+   * sections (inclusions, step list, FAQs, related services, closing CTA)
+   * rather than repeating the same ground twice.
+   */
+  hideTemplateSections?: boolean;
 };
 
 export const services: Service[] = [
@@ -78,6 +121,84 @@ export const services: Service[] = [
     ],
     priceFrom: "Free design & quote",
     turnaround: "3–5 weeks to power-on",
+    heroImage: { src: "/images/hero/solar-home-install.jpg", position: "center 22%" },
+    processBlock: {
+      intro: [
+        "Installing a solar system with battery storage in Australia is one of the smartest long-term investments homeowners and businesses can make to reduce electricity bills, protect against rising energy prices, and gain greater energy independence. With Australia's abundant sunlight and supportive government incentives, solar and battery installations are now more accessible and cost-effective than ever.",
+        "A professionally installed solar power system paired with a battery allows you to generate, store, and use your own clean energy — day and night — while reducing reliance on the grid.",
+      ],
+      eyebrow: "How it works",
+      heading: "Our Solar & Battery",
+      headingAccent: "Installation Process",
+      description:
+        "Every installation follows a structured, compliant process designed to meet the highest Australian Standards.",
+      steps: [
+        {
+          title: "Site Assessment",
+          body: "Detailed energy assessment and physical site inspection to ensure your property is solar-ready.",
+          icon: "scan",
+        },
+        {
+          title: "Custom System Design",
+          body: "Personalised engineering based on your specific energy usage and roof layout for maximum ROI.",
+          icon: "ruler",
+        },
+        {
+          title: "Grid Approval",
+          body: "We handle all the paperwork, grid approvals, and compliance documentation for a stress-free experience.",
+          icon: "clipboard",
+        },
+        {
+          title: "SAA Accredited Install",
+          body: "Professional installation by Solar Accreditation Australia (SAA) accredited installers ensuring elite workmanship.",
+          icon: "hardhat",
+        },
+        {
+          title: "Testing & Optimisation",
+          body: "Final commissioning, performance testing, and smart optimisation to ensure your system is running perfectly.",
+          icon: "gauge",
+        },
+      ],
+    },
+    explainerBlock: {
+      eyebrow: "The basics",
+      title: "How Solar Systems Work",
+      intro:
+        "A solar system typically utilises photovoltaic panels to enable sunlight conversion for a usable form of electricity. The system captures sunlight and converts it into direct current (DC) electricity.",
+      introEmphasis: "direct current (DC)",
+      points: [
+        "DC power is transformed into AC current for home use by an inverter.",
+        "Battery storage systems can store excess energy for use at night or during outages.",
+        "A monitoring system provides real-time data on generation and utilisation.",
+      ],
+      image: {
+        src: "/images/services/how-solar-works.svg",
+        alt: "Diagram of a rooftop solar system: sunlight becomes electricity in the panels, an inverter turns DC into AC for the home, and a meter measures what is used or sent back to the grid or a battery.",
+        width: 900,
+        height: 700,
+      },
+    },
+    pricingBlock: {
+      eyebrow: "Pricing",
+      title: "Solar System Prices in Australia",
+      intro:
+        "Solar system prices in Australia vary depending on system size and the type of equipment used. The table below provides a clear overview of average costs for different system capacities, helping you get a quick idea of what to expect when planning your installation.",
+      columns: ["System Size", "Average Cost (AUD)"],
+      rows: [
+        { size: "6.6 kW", cost: "$3,999" },
+        { size: "8 kW", cost: "$4,599" },
+        { size: "10 kW", cost: "$5,999" },
+        { size: "13.5 kW", cost: "$4,360" },
+        { size: "20 kW", cost: "$10,299" },
+        { size: "30 kW", cost: "$12,599" },
+        { size: "40 kW", cost: "$16,599" },
+        { size: "50 kW", cost: "$19,599" },
+      ],
+      note: "All prices listed are approximate and subject to change. Please request a quote for the most accurate and up-to-date pricing.",
+      outro:
+        "The final price of a solar system mainly depends on how large the installation is — basically, how many kilowatts (kW) of panels you choose. Panel selection plays a big role as well. For example, a 10 kW system built with premium panels like REC can cost nearly twice as much as the same-sized system using good-quality budget panels such as Jinko.",
+    },
+    hideTemplateSections: true,
     image: "/images/services/solar.jpg",
   },
   {

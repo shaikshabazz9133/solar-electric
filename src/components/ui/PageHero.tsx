@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
@@ -8,24 +9,50 @@ import { cn } from "@/lib/utils";
 
 export type Crumb = { label: string; href?: string };
 
-export function Breadcrumbs({ items }: { items: Crumb[] }) {
+/** `tone` picks the palette: `dark` sits on the hero photograph, `light` on a page. */
+export function Breadcrumbs({
+  items,
+  tone = "dark",
+}: {
+  items: Crumb[];
+  tone?: "dark" | "light";
+}) {
+  const dark = tone === "dark";
+  const link = dark
+    ? "transition-colors hover:text-white"
+    : "transition-colors hover:text-flag-700";
+
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-1.5 text-[0.8125rem] font-medium text-brand-200/80">
+      <ol
+        className={cn(
+          "flex flex-wrap items-center gap-1.5 text-[0.8125rem] font-medium",
+          dark ? "text-brand-200/80" : "text-ink-500",
+        )}
+      >
         <li>
-          <Link href="/" className="transition-colors hover:text-white">
+          <Link href="/" className={link}>
             Home
           </Link>
         </li>
         {items.map((item, index) => (
           <li key={item.label} className="flex items-center gap-1.5">
-            <ChevronRight aria-hidden className="size-3.5 text-brand-200/75" />
+            <ChevronRight
+              aria-hidden
+              className={cn(
+                "size-3.5",
+                dark ? "text-brand-200/75" : "text-ink-400",
+              )}
+            />
             {item.href && index < items.length - 1 ? (
-              <Link href={item.href} className="transition-colors hover:text-white">
+              <Link href={item.href} className={link}>
                 {item.label}
               </Link>
             ) : (
-              <span className="text-white" aria-current="page">
+              <span
+                className={dark ? "text-white" : "text-ink-900"}
+                aria-current="page"
+              >
                 {item.label}
               </span>
             )}
@@ -39,6 +66,10 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
 /**
  * Shared banner for every inner page: deep flag-blue field, soft aurora glow,
  * faint engineering grid, breadcrumbs and an optional stat rail.
+ *
+ * Pass `image` to swap the generated field for a full-bleed photograph; the
+ * ambient layers stay, dialled right down, so the banner still reads as part
+ * of the same family.
  */
 export function PageHero({
   eyebrow,
@@ -47,6 +78,8 @@ export function PageHero({
   descriptionAs: Description = "p",
   crumbs,
   stats,
+  image,
+  scrim = "default",
   children,
   className,
 }: {
@@ -57,6 +90,13 @@ export function PageHero({
   descriptionAs?: "p" | "h2";
   crumbs?: Crumb[];
   stats?: { value: string; label: string }[];
+  /** Full-bleed background photograph. `position` tunes the crop focal point. */
+  image?: { src: string; position?: string };
+  /**
+   * How hard to darken a photographic banner. `soft` keeps the photograph open
+   * and readable as a photograph — a single flat tint, no directional wedge.
+   */
+  scrim?: "default" | "soft";
   children?: ReactNode;
   className?: string;
 }) {
@@ -69,10 +109,37 @@ export function PageHero({
     >
       {/* Ambient light */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="bg-grid-drift absolute inset-0 opacity-60" />
-        <Aurora />
-        <CircuitField className="text-brand-400/60" opacity={0.4} />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-brand-950 to-transparent" />
+        {image ? (
+          <>
+            <Image
+              src={image.src}
+              alt=""
+              fill
+              preload
+              sizes="100vw"
+              style={{ objectPosition: image.position ?? "center 35%" }}
+              className="size-full object-cover"
+            />
+            {/* Neutral scrim only — no colour cast, no motion. `default` lays a
+                wedge under the copy column; `soft` is one even tint that holds
+                white text at AA without casting a shadow across the frame. */}
+            {scrim === "soft" ? (
+              <div className="absolute inset-0 bg-black/45" />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/55 to-black/30 sm:from-black/75 sm:via-black/35 sm:to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-black/30" />
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="bg-grid-drift absolute inset-0 opacity-60" />
+            <Aurora />
+            <CircuitField className="text-brand-400/60" opacity={0.4} />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-brand-950 to-transparent" />
+          </>
+        )}
       </div>
 
       <Container>
@@ -108,7 +175,12 @@ export function PageHero({
 
           {stats?.length ? (
             <Reveal delay={0.26}>
-              <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-4">
+              <dl
+                className={cn(
+                  "mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10",
+                  stats.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4",
+                )}
+              >
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
