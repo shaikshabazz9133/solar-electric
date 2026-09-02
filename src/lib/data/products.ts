@@ -117,30 +117,30 @@ export const productCategories: ProductCategory[] = [
       { src: "/images/products/heat-pump-3.jpg", caption: "Commissioned and set to schedule" },
     ],
   },
-  {
-    slug: "ceiling-vacuum",
-    label: "Ceiling Vacuum & Insulation Removal",
-    icon: "waves",
-    blurb: "HEPA-filtered clear-outs of old ceiling insulation.",
-    image: "/images/products/ceiling-vacuum-1.jpg",
-    gallery: [
-      { src: "/images/products/ceiling-vacuum-1.jpg", caption: "Extraction hose fed into the cavity" },
-      { src: "/images/products/ceiling-vacuum-2.jpg", caption: "Old batts pulled back off the joists" },
-      { src: "/images/products/ceiling-vacuum-3.jpg", caption: "Cavity prepped before the new fit" },
-    ],
-  },
-  {
-    slug: "ceiling-insulation",
-    label: "Ceiling Insulation",
-    icon: "layers",
-    blurb: "High-R batts and blown-in fill, installed to spec.",
-    image: "/images/products/ceiling-insulation-1.jpg",
-    gallery: [
-      { src: "/images/products/ceiling-insulation-1.jpg", caption: "R6.0 batts friction-fit, no gaps" },
-      { src: "/images/products/ceiling-insulation-2.jpg", caption: "Vapour layer set before the fill" },
-      { src: "/images/products/ceiling-insulation-3.jpg", caption: "Batts on site, R-value checked" },
-    ],
-  },
+  // {
+  //   slug: "ceiling-vacuum",
+  //   label: "Ceiling Vacuum & Insulation Removal",
+  //   icon: "waves",
+  //   blurb: "HEPA-filtered clear-outs of old ceiling insulation.",
+  //   image: "/images/products/ceiling-vacuum-1.jpg",
+  //   gallery: [
+  //     { src: "/images/products/ceiling-vacuum-1.jpg", caption: "Extraction hose fed into the cavity" },
+  //     { src: "/images/products/ceiling-vacuum-2.jpg", caption: "Old batts pulled back off the joists" },
+  //     { src: "/images/products/ceiling-vacuum-3.jpg", caption: "Cavity prepped before the new fit" },
+  //   ],
+  // },
+  // {
+  //   slug: "ceiling-insulation",
+  //   label: "Ceiling Insulation",
+  //   icon: "layers",
+  //   blurb: "High-R batts and blown-in fill, installed to spec.",
+  //   image: "/images/products/ceiling-insulation-1.jpg",
+  //   gallery: [
+  //     { src: "/images/products/ceiling-insulation-1.jpg", caption: "R6.0 batts friction-fit, no gaps" },
+  //     { src: "/images/products/ceiling-insulation-2.jpg", caption: "Vapour layer set before the fill" },
+  //     { src: "/images/products/ceiling-insulation-3.jpg", caption: "Batts on site, R-value checked" },
+  //   ],
+  // },
 ];
 
 export const products: Product[] = [

@@ -25,7 +25,7 @@ export default function HomePage() {
       <WhyUs />
       <SavingsCalculator />
       <Process />
-      <ProductsPreview />
+      {/* <ProductsPreview /> */}
       <ProjectsShowcase />
       <Testimonials />
     </>

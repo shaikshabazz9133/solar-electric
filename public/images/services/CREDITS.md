@@ -1,7 +1,8 @@
 # Service card photography
 
-Placeholder photography for the nine service cards, pending Eagle's own job
-photos. Every frame is licensed for commercial use. Cropped to 3:2 and
+Placeholder photography for the nine service cards, plus the in-page frames on
+the battery page (the `battery-*` files below the card set), pending Eagle's own
+job photos. Every frame is licensed for commercial use. Cropped to 3:2 and
 re-encoded at 1200×800; otherwise unaltered.
 
 Replace these files (same names, same 3:2 crop) with Eagle's own site photos
@@ -22,8 +23,18 @@ derivative that would have to be published under the same licence.
 | `meter-box-upgrade.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Electricians_fixing_electricity_meter_5.jpg) | Jeromi Mikhael | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) |
 | `ev-charger.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tesla_Model_S_home_charging_in_Dorchester,_Boston_November_2025.jpg) | 4300streetcar | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | `induction-cooktop.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:HK_PRChina_Product_Midea_Induction_Cooker.JPG) | MDeWorld | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `battery-canberra-home.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:AUS_Kawana_Waters,_Buddina,_Pacific_Boulevard_001.jpg) | -wuppertaler | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| `battery-lithium-bank.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bennett_000166_172463_517705_4578_(35974719113).jpg) | Christine Bennett / U.S. Department of Energy | Public domain |
+| `battery-lead-acid.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kabus_000246_171296_516068_4578_(36775938376).jpg) | Cody Kabus / U.S. Department of Energy | Public domain |
+| `battery-grid-scale.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Reid_Gardner_BESS.jpg) | Sig. Chiocciola | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) |
 
-The two CC BY files (`ev-charger.jpg`, `induction-cooktop.jpg`) require visible
-attribution wherever they are published. Keep a credit line on the site (footer
+The four `battery-*` frames are the equipment-type and locality photographs on
+`/services/battery`. They show that *class* of installation, not Eagle's own
+work — the alt text was written against each photo, so if you swap one, check
+its description still tells the truth.
+
+The three CC BY files (`ev-charger.jpg`, `induction-cooktop.jpg`,
+`battery-canberra-home.jpg`) require visible attribution wherever they are
+published. Keep a credit line on the site (footer
 or a `/credits` page) for as long as those two are in use — the same outstanding
 requirement the hero photography carries; see `public/images/hero/CREDITS.md`.

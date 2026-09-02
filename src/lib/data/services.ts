@@ -30,6 +30,32 @@ export type ServicePricingBlock = {
   outro: string;
 };
 
+/**
+ * A deck of cards under a service banner: rebate schemes, equipment types,
+ * anything a service needs laid out side by side in the site's card language.
+ * A card leads with a photograph where it has one, otherwise with its icon.
+ */
+export type ServiceCardDeckBlock = {
+  eyebrow: string;
+  title: string;
+  /** Trailing phrase of the title, set in the brand gradient. */
+  titleAccent?: string;
+  intro?: string;
+  /** `tinted` sits the band on the grey wash; `light` keeps it white. */
+  tone?: "light" | "tinted";
+  cards: {
+    icon: string;
+    title: string;
+    body?: string;
+    bullets?: string[];
+    /** Short pill above the heading — a figure, a headline saving. */
+    badge?: string;
+    image?: { src: string; alt: string };
+  }[];
+  /** Caveat shown under the deck, in the same pill as the price note. */
+  note?: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -51,9 +77,19 @@ export type Service = {
   image: string;
   /** Full-bleed photograph behind the page banner, where we have one. */
   heroImage?: { src: string; position?: string };
+  /**
+   * Banner headline and standfirst, where the page needs to say more than the
+   * nav does — the nav and service cards keep the short `title`.
+   */
+  heroTitle?: string;
+  heroDescription?: string;
   processBlock?: ServiceProcessBlock;
   explainerBlock?: ServiceExplainerBlock;
   pricingBlock?: ServicePricingBlock;
+  /** Card decks rendered under the blocks above, in order. */
+  cardBlocks?: ServiceCardDeckBlock[];
+  /** Closing call to action, shown even where the template sections are off. */
+  closingCta?: { title: string; body: string };
   /**
    * Pages carrying their own long-form blocks drop the stock template
    * sections (inclusions, step list, FAQs, related services, closing CTA)
@@ -97,10 +133,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Energy audit", body: "We pull 12 months of interval data from your utility to size the array honestly." },
-      { title: "Design review", body: "You see the layout, the production model and the payback before anything is ordered." },
-      { title: "Permit & install", body: "Most residential systems are installed in one to two days once permits clear." },
-      { title: "Commissioning", body: "Utility sign-off, monitoring set-up and a walkthrough of your new production data." },
+      {
+        title: "Energy audit",
+        body: "We pull 12 months of interval data from your utility to size the array honestly.",
+      },
+      {
+        title: "Design review",
+        body: "You see the layout, the production model and the payback before anything is ordered.",
+      },
+      {
+        title: "Permit & install",
+        body: "Most residential systems are installed in one to two days once permits clear.",
+      },
+      {
+        title: "Commissioning",
+        body: "Utility sign-off, monitoring set-up and a walkthrough of your new production data.",
+      },
     ],
     faqs: [
       {
@@ -121,7 +169,10 @@ export const services: Service[] = [
     ],
     priceFrom: "Free design & quote",
     turnaround: "3–5 weeks to power-on",
-    heroImage: { src: "/images/hero/solar-home-install.jpg", position: "center 22%" },
+    heroImage: {
+      src: "/images/hero/solar-home-install.jpg",
+      position: "center 22%",
+    },
     processBlock: {
       intro: [
         "Installing a solar system with battery storage in Australia is one of the smartest long-term investments homeowners and businesses can make to reduce electricity bills, protect against rising energy prices, and gain greater energy independence. With Australia's abundant sunlight and supportive government incentives, solar and battery installations are now more accessible and cost-effective than ever.",
@@ -235,10 +286,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Load study", body: "A week of circuit-level monitoring shows exactly what needs to stay alive." },
-      { title: "Sizing", body: "We model outage duration against capacity so the trade-offs are explicit." },
-      { title: "Install", body: "Battery, gateway and backup sub-panel installed in a single day on most homes." },
-      { title: "Outage drill", body: "We simulate a grid failure with you present so you know exactly what happens." },
+      {
+        title: "Load study",
+        body: "A week of circuit-level monitoring shows exactly what needs to stay alive.",
+      },
+      {
+        title: "Sizing",
+        body: "We model outage duration against capacity so the trade-offs are explicit.",
+      },
+      {
+        title: "Install",
+        body: "Battery, gateway and backup sub-panel installed in a single day on most homes.",
+      },
+      {
+        title: "Outage drill",
+        body: "We simulate a grid failure with you present so you know exactly what happens.",
+      },
     ],
     faqs: [
       {
@@ -259,6 +322,166 @@ export const services: Service[] = [
     ],
     priceFrom: "From $11,400 installed",
     turnaround: "2–4 weeks",
+    heroImage: {
+      src: "/images/hero/solar-home-array.jpg",
+      position: "center 46%",
+    },
+    heroTitle: "Battery Storage in Canberra",
+    heroDescription:
+      "Store the sun. Use it when you need it. Make the most of your solar energy with a home battery designed for your energy needs.",
+    processBlock: {
+      intro: [
+        "A home battery stores the solar your panels make while the sun is up and gives it back after dark, so more of what your roof generates ends up inside your house instead of going back down the street for a few cents a kilowatt-hour.",
+        "We size storage against twelve months of your own consumption rather than a brochure average, and install it under the same licence that covers your solar, your switchboard and your meter — one team, one warranty.",
+      ],
+      eyebrow: "Why a battery",
+      heading: "Why add",
+      headingAccent: "a battery?",
+      description:
+        "Five things a correctly sized battery changes about the way your home uses the power it already generates.",
+      steps: [
+        {
+          title: "Store excess solar during the day",
+          body: "Everything your panels make beyond what the house is using goes into the battery instead of back out to the grid.",
+          icon: "sun",
+        },
+        {
+          title: "Use your own energy at night",
+          body: "Lighting, cooking and heating after sunset run on solar you have already paid for rather than on imported electricity.",
+          icon: "moon",
+        },
+        {
+          title: "Reduce your reliance on grid electricity",
+          body: "The less you import at peak rates, the smaller the part of your bill that moves when retail prices move.",
+          icon: "trendingdown",
+        },
+        {
+          title: "Take greater control of your energy",
+          body: "Monitoring shows what is stored, what is being used and what is being exported, in real time, on your phone.",
+          icon: "gauge",
+        },
+        {
+          title: "Optional backup power during outages",
+          body: "Depending on the system, nominated circuits can keep running through a blackout. We tell you exactly which ones before you buy.",
+          icon: "plugzap",
+        },
+      ],
+    },
+    explainerBlock: {
+      eyebrow: "Local conditions",
+      title: "Built for Canberra Homes",
+      intro:
+        "Canberra gets plenty of sunshine, so a battery can help you use more of the solar energy your system produces instead of sending excess energy to the grid.",
+      introEmphasis: "use more of the solar energy your system produces",
+      points: [
+        "Cold winter evenings and hot summer afternoons are when Canberra households draw hardest — which is exactly when stored solar is worth the most to you.",
+        "Storage is sized against twelve months of your own interval data, so the battery matches the way your household actually runs rather than an average one.",
+        "Solar and electrical sit under one licence here, so the battery, the switchboard work and the grid application are handled by the same team.",
+      ],
+      image: {
+        src: "/images/services/battery-canberra-home.jpg",
+        alt: "An Australian suburban home with a rooftop solar array under a bright sky.",
+        width: 1200,
+        height: 900,
+      },
+    },
+    cardBlocks: [
+      {
+        eyebrow: "Rebates and finance",
+        title: "ACT Government",
+        titleAccent: "Support",
+        intro:
+          "Two schemes can bring the cost of a battery down. We check which ones you qualify for before we quote, and handle the paperwork that comes with them.",
+        tone: "tinted",
+        cards: [
+          {
+            icon: "piggybank",
+            title: "Sustainable Household Scheme",
+            badge: "Up to $20,000",
+            body: "Eligible ACT households may be able to access the Sustainable Household Scheme, which from 1 July 2026 allows eligible households to borrow up to $20,000 for eligible energy-efficient products, including battery storage.",
+          },
+          {
+            icon: "percent",
+            title: "Cheaper Home Batteries Program",
+            badge: "Around 30% off",
+            body: "The Australian Government's Cheaper Home Batteries Program provides eligible customers with an upfront discount of around 30% on battery installation costs.",
+          },
+        ],
+        note: "Eligibility and conditions apply to both schemes. We will tell you which ones your household actually qualifies for before you commit to anything.",
+      },
+      {
+        eyebrow: "Choosing a battery",
+        title: "Types of Solar Battery",
+        titleAccent: "Installations in Australia",
+        intro:
+          "There are various types of solar batteries that suit different needs — from a wall-mounted lithium unit in a suburban garage to a bank sized for a commercial site.",
+        cards: [
+          {
+            icon: "battery",
+            title: "Lithium-Ion Solar Batteries",
+            bullets: [
+              "Most common for residential use.",
+              "High energy density and long lifespan (10–15 years).",
+              "Eligible for federal rebates up to $336/kWh.",
+            ],
+            image: {
+              src: "/images/services/battery-lithium-bank.jpg",
+              alt: "A wall-mounted lithium battery bank and inverters installed in a home garage.",
+            },
+          },
+          {
+            icon: "layers",
+            title: "Lead-Acid Solar Batteries",
+            bullets: [
+              "Budget-friendly for basic off-grid setups.",
+              "Lower upfront cost but shorter lifespan (3–7 years).",
+              "Suitable for remote areas with minimal cycling needs.",
+            ],
+            image: {
+              src: "/images/services/battery-lead-acid.jpg",
+              alt: "A lead-acid battery wired to a solar charge controller on an off-grid test bench.",
+            },
+          },
+          {
+            icon: "waves",
+            title: "Flow Batteries (e.g. Vanadium Redox)",
+            bullets: [
+              "Scalable for larger homes or commercial use.",
+              "Long lifespan (20+ years) with independent capacity.",
+              "Ideal for high-demand systems with frequent outages.",
+            ],
+            image: {
+              src: "/images/services/battery-grid-scale.jpg",
+              alt: "Rows of large-scale battery storage cabinets on a commercial energy storage site.",
+            },
+          },
+        ],
+      },
+    ],
+    pricingBlock: {
+      eyebrow: "Pricing",
+      title: "Solar Battery Prices in Australia",
+      intro:
+        "Here is an overview of home battery sizes with estimated prices, so you can see roughly where your household is likely to land before you ask anyone for a quote.",
+      columns: ["Battery Capacity (kWh)", "Battery Price"],
+      rows: [
+        { size: "5 kWh", cost: "$2,999" },
+        { size: "10 kWh", cost: "$3,999" },
+        { size: "15 kWh", cost: "$4,899" },
+        { size: "20 kWh", cost: "$6,599" },
+        { size: "30 kWh", cost: "$6,299" },
+        { size: "40 kWh", cost: "$8,859" },
+        { size: "50 kWh", cost: "$9,999" },
+      ],
+      note: "All prices listed are approximate and subject to change, and they cover the battery itself rather than the switchboard work a particular house turns out to need. Please request a quote for the most accurate and up-to-date pricing.",
+      outro:
+        "For the best price and expert advice, get in touch with Eagle. We will help you choose the right solar battery and the ideal battery size for your home or commercial property, with pricing based on your actual energy needs rather than on a package we happen to have in the van.",
+    },
+    closingCta: {
+      title: "Tell us what you need. We're here to help.",
+      body: "Our local team provides reliable solar and electrical services across Canberra and surrounding regions. Get in touch for a free quote or to discuss your project.",
+    },
+    hideTemplateSections: true,
     image: "/images/services/battery.jpg",
   },
   {
@@ -295,10 +518,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Site visit", body: "We measure the rooms, check the switchboard capacity and agree unit positions." },
-      { title: "Fixed quote", body: "Line-itemed pricing covering equipment, brackets, pipework, electrical and make-good." },
-      { title: "Install", body: "Most single-head installs are done in a day; ducted systems take two to three." },
-      { title: "Handover", body: "Commissioning sheet, warranty registration and a walkthrough of the controller." },
+      {
+        title: "Site visit",
+        body: "We measure the rooms, check the switchboard capacity and agree unit positions.",
+      },
+      {
+        title: "Fixed quote",
+        body: "Line-itemed pricing covering equipment, brackets, pipework, electrical and make-good.",
+      },
+      {
+        title: "Install",
+        body: "Most single-head installs are done in a day; ducted systems take two to three.",
+      },
+      {
+        title: "Handover",
+        body: "Commissioning sheet, warranty registration and a walkthrough of the controller.",
+      },
     ],
     faqs: [
       {
@@ -355,10 +590,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Panel check", body: "Photo of your panel and meter gets you a firm quote, often the same day." },
-      { title: "Route plan", body: "We agree the charger position and conduit route before drilling anything." },
-      { title: "Install", body: "Most home installs are complete in three to four hours, permit included." },
-      { title: "Handover", body: "We charge your vehicle on site and set up scheduling in the manufacturer's app." },
+      {
+        title: "Panel check",
+        body: "Photo of your panel and meter gets you a firm quote, often the same day.",
+      },
+      {
+        title: "Route plan",
+        body: "We agree the charger position and conduit route before drilling anything.",
+      },
+      {
+        title: "Install",
+        body: "Most home installs are complete in three to four hours, permit included.",
+      },
+      {
+        title: "Handover",
+        body: "We charge your vehicle on site and set up scheduling in the manufacturer's app.",
+      },
     ],
     faqs: [
       {
@@ -415,10 +662,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Walkthrough", body: "We map your existing circuits and listen to what is actually frustrating you." },
-      { title: "Fixed-price scope", body: "A written quote with line items — no allowances, no surprise change orders." },
-      { title: "Install", body: "Licensed electricians, permits pulled, and daily updates while we are on site." },
-      { title: "Sign-off", body: "Photo documentation, panel schedule and a 25-year workmanship warranty." },
+      {
+        title: "Walkthrough",
+        body: "We map your existing circuits and listen to what is actually frustrating you.",
+      },
+      {
+        title: "Fixed-price scope",
+        body: "A written quote with line items — no allowances, no surprise change orders.",
+      },
+      {
+        title: "Install",
+        body: "Licensed electricians, permits pulled, and daily updates while we are on site.",
+      },
+      {
+        title: "Sign-off",
+        body: "Photo documentation, panel schedule and a 25-year workmanship warranty.",
+      },
     ],
     faqs: [
       {
@@ -475,10 +734,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Assessment", body: "Current heating bills, hot-water usage and the building envelope are reviewed together." },
-      { title: "Proposal", body: "Equipment options with modelled running costs, rebates applied and payback shown." },
-      { title: "Changeover", body: "Old system removed, heat pump installed and commissioned, usually within a day." },
-      { title: "Tuning", body: "We revisit the schedule after the first month and adjust it against your real usage." },
+      {
+        title: "Assessment",
+        body: "Current heating bills, hot-water usage and the building envelope are reviewed together.",
+      },
+      {
+        title: "Proposal",
+        body: "Equipment options with modelled running costs, rebates applied and payback shown.",
+      },
+      {
+        title: "Changeover",
+        body: "Old system removed, heat pump installed and commissioned, usually within a day.",
+      },
+      {
+        title: "Tuning",
+        body: "We revisit the schedule after the first month and adjust it against your real usage.",
+      },
     ],
     faqs: [
       {
@@ -535,10 +806,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Model check", body: "Appliance specs and a photo of your switchboard tell us what the install needs." },
-      { title: "Quote", body: "Circuit, cut-out, gas capping and make-good priced as one fixed number." },
-      { title: "Install", body: "Typically half a day, including testing every zone with a pan on it." },
-      { title: "Handover", body: "Compliance certificate, circuit labelled and the old appliance taken away." },
+      {
+        title: "Model check",
+        body: "Appliance specs and a photo of your switchboard tell us what the install needs.",
+      },
+      {
+        title: "Quote",
+        body: "Circuit, cut-out, gas capping and make-good priced as one fixed number.",
+      },
+      {
+        title: "Install",
+        body: "Typically half a day, including testing every zone with a pan on it.",
+      },
+      {
+        title: "Handover",
+        body: "Compliance certificate, circuit labelled and the old appliance taken away.",
+      },
     ],
     faqs: [
       {
@@ -595,10 +878,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Scope", body: "A quick walk or asset list gives us item counts and a fixed per-item price." },
-      { title: "Test round", body: "Items are tested, tagged and logged; failures are isolated and reported immediately." },
-      { title: "Register", body: "A digital register with results, photos and next-due dates within 24 hours." },
-      { title: "Reminders", body: "We schedule the next round and remind you before anything expires." },
+      {
+        title: "Scope",
+        body: "A quick walk or asset list gives us item counts and a fixed per-item price.",
+      },
+      {
+        title: "Test round",
+        body: "Items are tested, tagged and logged; failures are isolated and reported immediately.",
+      },
+      {
+        title: "Register",
+        body: "A digital register with results, photos and next-due dates within 24 hours.",
+      },
+      {
+        title: "Reminders",
+        body: "We schedule the next round and remind you before anything expires.",
+      },
     ],
     faqs: [
       {
@@ -655,10 +950,22 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { title: "Load calc", body: "Existing and planned loads are calculated to specify the right supply size." },
-      { title: "Permit & utility", body: "We file the paperwork and book the utility disconnect window." },
-      { title: "Changeover", body: "Old board out, new gear in, power restored the same day in most cases." },
-      { title: "Inspection", body: "We meet the inspector on site and handle any corrections at our cost." },
+      {
+        title: "Load calc",
+        body: "Existing and planned loads are calculated to specify the right supply size.",
+      },
+      {
+        title: "Permit & utility",
+        body: "We file the paperwork and book the utility disconnect window.",
+      },
+      {
+        title: "Changeover",
+        body: "Old board out, new gear in, power restored the same day in most cases.",
+      },
+      {
+        title: "Inspection",
+        body: "We meet the inspector on site and handle any corrections at our cost.",
+      },
     ],
     faqs: [
       {

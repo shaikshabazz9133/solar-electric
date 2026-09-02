@@ -25,6 +25,10 @@ placeholders are in use.
 | File | Source | Credit | Licence |
 | --- | --- | --- | --- |
 | `solar-home-install.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Three_men_installing_solar_panels_on_a_house.jpg) | — | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `solar-home-array.jpg` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Martin_000410_163328_506909_4578_(36792947532).jpg) | Olivia Martin / U.S. Department of Energy | Public domain |
 
-CC0 needs no attribution, so this one can stay until Eagle's own install
-photography is ready. Cropped to 2400×1312 and re-encoded; otherwise unaltered.
+Neither of these needs attribution, so they can stay until Eagle's own install
+photography is ready. `solar-home-install.jpg` is cropped to 2400×1312;
+`solar-home-array.jpg` — the banner on `/services/battery` — is cropped to
+1920×880, the full width of the source file, so nothing is upscaled. Both are
+otherwise unaltered.
